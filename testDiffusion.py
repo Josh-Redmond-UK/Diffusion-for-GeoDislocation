@@ -4,7 +4,7 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import numpy as np 
 import pandas as pd
-
+import random
 
 
 import sys
@@ -139,6 +139,12 @@ if __name__ == "__main__":
                 n, = np.where(imgIdxs == idx) # integers
                 weights.append(wd)
                 topNs.append(n)
+
+            vizSample = random.choice(qSet)
+            for idx, q in enumerate(vizSample):
+                imgIdxs, weights = RSIRUtils.getNearestIdxs(q, rClasses, rFeatures, rsirModel, featureExtraction, len(qSet), True)
+                lookupResults = RSIRUtils.lookupImage(q, rClasses, rFeatures, qSet, 5)
+                RSIRUtils.plotLookup(q, lookupResults, f"res {idx}, {pn} points, {br[0]}-{br[1]} buffers.png")
 
             wMean = np.mean(weights)
             nMean = np.mean(topNs)

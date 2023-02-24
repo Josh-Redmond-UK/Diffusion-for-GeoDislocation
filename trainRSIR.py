@@ -7,6 +7,9 @@ from src.RSIRUtils import *
 
 if __name__ == "__main__":
     epochs = int(sys.argv[0])
+    imageSize = int(sys.argv[1])
+    numChannels = int(sys.argv[2])
+
     # load the whole dataset, for data info
     all_ds   = tfds.load("eurosat", with_info=True)
     # load training, testing & validation sets, splitting by 60%, 20% and 20% respectively
@@ -22,7 +25,7 @@ if __name__ == "__main__":
     train_ds = prepare_for_training(train_ds, batch_size=batch_size)
     valid_ds = prepare_for_training(valid_ds, batch_size=batch_size)
 
-    model, checkpoint = getModel()
+    model, checkpoint = getModel([None, imageSize, imageSize, numChannels])
 
     # number of training steps
     n_training_steps   = int(num_examples * 0.6) // batch_size

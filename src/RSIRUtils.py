@@ -90,15 +90,16 @@ def getEuclidDist(qFeats, rFeats):
 def lookupIdxs(idxs, dataset):
   return np.take(dataset, idxs, 0)
 
-def lookupImage(q, rClasses, rFeatures, k=3):
+def lookupImage(q, rClasses, rFeatures, R, k=3):
   idxs = getNearestIdxs(q, rClasses, rFeatures, k)
   return lookupIdxs(idxs, R)
 
-def plotLookup(q, rLookup):
+def plotLookup(q, rLookup, figName="results"):
   fig, axs = plt.subplots(rLookup.shape[0]+1, figsize=(10,10))
   axs[0].imshow(q)
   for idx, r in enumerate(rLookup):
     axs[idx+1].imshow(r)
+  plt.savefig(f"{figName}.png")
 
 def getNearestIdxs(image, rClasses, rFeatures, model, featureExtraction, k = 3, returnWD=False):
  
