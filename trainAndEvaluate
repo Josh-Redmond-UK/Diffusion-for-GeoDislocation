@@ -1,0 +1,3 @@
+python trainDiffusion.py 50 64 3
+python trainRSIR.py 50
+python testDiffusion.py 64 3 

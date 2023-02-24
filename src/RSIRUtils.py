@@ -59,6 +59,7 @@ def trainModel(model, epochs, train_ds, valid_ds, n_training_steps, n_validation
         verbose=1, epochs=epochs, 
         callbacks=[model_checkpoint]
     )
+    model.save("models/satellite-classification.h5")
     return history
 
 def prepare_for_test(ds, cache=True, batch_size=64, shuffle_buffer_size=1000):
