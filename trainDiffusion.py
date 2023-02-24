@@ -19,13 +19,13 @@ if __name__ == "__main__":
 
     # Get HyperParams
     batch_size = 32
-    num_epochs = sys.argv[0]  # Just for the sake of demonstration
+    num_epochs = int(sys.argv[0])  # Just for the sake of demonstration
     total_timesteps = 1000
     norm_groups = 8  # Number of groups used in GroupNormalization layer
     learning_rate = 2e-4
 
-    img_size = sys.argv[1]
-    img_channels = sys.argv[2]
+    img_size = int(sys.argv[1])
+    img_channels = int(sys.argv[2])
     clip_min = -1.0
     clip_max = 1.0
 

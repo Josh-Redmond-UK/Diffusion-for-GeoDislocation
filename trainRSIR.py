@@ -6,7 +6,7 @@ from src.RSIRUtils import *
 
 
 if __name__ == "__main__":
-    epochs = sys.argv[0]
+    epochs = int(sys.argv[0])
     # load the whole dataset, for data info
     all_ds   = tfds.load("eurosat", with_info=True)
     # load training, testing & validation sets, splitting by 60%, 20% and 20% respectively

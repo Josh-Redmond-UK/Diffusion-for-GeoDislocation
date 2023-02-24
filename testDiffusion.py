@@ -26,8 +26,8 @@ if __name__ == "__main__":
     norm_groups = 8  # Number of groups used in GroupNormalization layer
     learning_rate = 2e-4
 
-    img_size =  sys.argv[0]
-    img_channels =  sys.argv[1]
+    img_size =  int(sys.argv[0])
+    img_channels =  int(sys.argv[1])
     clip_min = -1.0
     clip_max = 1.0
 
