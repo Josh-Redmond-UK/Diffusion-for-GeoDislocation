@@ -12,20 +12,20 @@ if __name__ == "__main__":
 
 
     # load training, testing & validation sets, splitting by 60%, 20% and 20% respectively
-    (train_ds,) = tfds.load("eurosat", split="train[:60%]")
-    (test_ds, ) = tfds.load("eurosat", split="train[60%:80%]")
-    (valid_ds,) = tfds.load("eurosat", split="train[80%:]")
+    (train_ds,) = tfds.load("eurosat", split="train[:60%]", with_info=False)
+    (test_ds, ) = tfds.load("eurosat", split="train[60%:80%]", with_info=False)
+    (valid_ds,) = tfds.load("eurosat", split="train[80%:]", with_info=False)
 
 
     # Get HyperParams
     batch_size = 32
-    num_epochs = int(sys.argv[0])  # Just for the sake of demonstration
+    num_epochs = int(sys.argv[1])  # Just for the sake of demonstration
     total_timesteps = 1000
     norm_groups = 8  # Number of groups used in GroupNormalization layer
     learning_rate = 2e-4
 
-    img_size = int(sys.argv[1])
-    img_channels = int(sys.argv[2])
+    img_size = int(sys.argv[2])
+    img_channels = int(sys.argv[3])
     clip_min = -1.0
     clip_max = 1.0
 
@@ -45,6 +45,7 @@ if __name__ == "__main__":
         num_res_blocks=num_res_blocks,
         norm_groups=norm_groups,
         activation_fn=tf.keras.activations.swish,
+        first_conv_channels=first_conv_channels
     )
     ema_network = DiffusionUtils.build_model(
         img_size=img_size,
@@ -54,6 +55,7 @@ if __name__ == "__main__":
         num_res_blocks=num_res_blocks,
         norm_groups=norm_groups,
         activation_fn=tf.keras.activations.swish,
+        first_conv_channels=first_conv_channels
     )
     ema_network.set_weights(network.get_weights())  # Initially the weights are the same
 

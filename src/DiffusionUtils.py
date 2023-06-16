@@ -410,6 +410,7 @@ def build_model(
     norm_groups=8,
     interpolation="nearest",
     activation_fn=keras.activations.swish,
+    first_conv_channels=64
 ):
     image_input = layers.Input(
         shape=(img_size, img_size, img_channels), name="image_input"
