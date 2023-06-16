@@ -13,8 +13,8 @@ if __name__ == "__main__":
 
     # load training, testing & validation sets, splitting by 60%, 20% and 20% respectively
     (train_ds,) = tfds.load("eurosat", split=["train[:60%]"], with_info=False)
-    (test_ds, ) = tfds.load("eurosat", split=["train[60%:80%]"], with_info=False)
-    (valid_ds,) = tfds.load("eurosat", split={"train[80%:]"}, with_info=False)
+    #(test_ds, ) = tfds.load("eurosat", split=["train[60%:80%]"], with_info=False)
+    #(valid_ds,) = tfds.load("eurosat", split={"train[80%:]"}, with_info=False)
 
 
     # Get HyperParams
