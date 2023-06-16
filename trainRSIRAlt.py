@@ -13,7 +13,7 @@ import tensorflow_addons as tfa
 all_ds   = tfds.load("eurosat", with_info=True)
 # load training, testing & validation sets, splitting by 60%, 20% and 20% respectively
 train_ds = tfds.load("eurosat", split="train[:60%]")
-
+valid_ds = tfds.load("eurosat", split="train[80%:]")
 
 # the class names
 class_names = all_ds[1].features["label"].names
